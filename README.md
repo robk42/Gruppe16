@@ -60,8 +60,7 @@ Dieses Projekt implementiert das klassische Tic Tac Toe-Spiel in C. Es bietet so
 1. **Repository klonen oder herunterladen:**
 
    ```bash
-   git clone https://github.com/YourUsername/tic-tac-toe.git
-   cd tic-tac-toe
+   git clone https://github.com/robk42/Gruppe16
 
 
 2. Benötigte Pakete installieren (z. B. unter Ubuntu/WSL):
