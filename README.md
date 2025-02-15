@@ -1,79 +1,48 @@
-# Gruppe16
-Programmentwurf Tic Tac Toe
+# Tic Tac Toe – Netzwerk- und ncurses-basiertes Mehrspielerspiel
 
-
-# Tic Tac Toe mit Netzwerkunterstützung, ncurses-GUI und Replay-Funktion
-
-Dieses Projekt implementiert das klassische Tic Tac Toe-Spiel in C. Neben der Basis-Spiellogik werden folgende Kernfeatures geboten:
-
-- **Multimodus-Unterstützung:**  
-  - **Einzelspielermodus:** Spieler vs. einfache KI  
-  - **Multiplayer-Modus:** Über TCP/IP (Server-/Client-Modell)
-
-- **Textbasierte grafische Oberfläche (TUI):**  
-  Mittels ncurses wird ein farbiges, strukturiertes Spielbrett in Deinem Terminal dargestellt.
-
-- **Replay-Funktion:**  
-  Nach Beendigung eines Spiels kann per Eingabe eine erneute Runde gestartet werden, ohne dass das Programm neu gestartet werden muss.
-
-- **Persistente Spielstatistiken:**  
-  Siege, Niederlagen und Unentschieden werden in der Datei `stats.txt` gespeichert und nach jedem Spiel angezeigt.
-
-## Inhaltsverzeichnis
-
-- [Überblick](#überblick)
-- [Features](#features)
-- [Systemanforderungen](#systemanforderungen)
-- [Installation und Build](#installation-und-build)
-- [Nutzung](#nutzung)
-- [Projektstruktur](#projektstruktur)
-- [Autoren](#autoren)
-- [Lizenz](#lizenz)
-- [Zukünftige Erweiterungen](#zukünftige-erweiterungen)
-
-## Überblick
-
-Dieses Projekt realisiert ein Tic Tac Toe-Spiel in drei verschiedenen Modi:
-
-- **Einzelspielermodus:**  
-  Spiele gegen eine einfache KI.
-
-- **Multiplayer-Modus:**  
-  - **Server:** Starte das Spiel als Host und warte auf einen Client.
-  - **Client:** Verbinde Dich mit einem laufenden Server.
-
-Die Darstellung erfolgt über ncurses – das heißt, die grafische Benutzeroberfläche wird direkt im Terminal realisiert und zeigt farblich hervorgehobene Spielzüge, Spielfeldlinien und Meldungen an.
+Dieses Projekt implementiert das klassische Tic Tac Toe-Spiel in C. Es bietet einen Singleplayer-Modus (Spieler vs. einfache KI) sowie einen Netzwerkmodus (Server/Client) und nutzt ncurses zur Darstellung in der Konsole. Zusätzlich werden Spielstatistiken (Wins, Losses, Draws) in einer Datei gespeichert, und es gibt Funktionen wie Replay, Win-Animation sowie eine Möglichkeit, das Spiel jederzeit mit dem Befehl "quit" zu beenden.
 
 ## Features
 
-- **Spielregeln:**  
-  Klassisches 3x3 Tic Tac Toe mit Gewinn- und Unentschieden-Überprüfung.
-  
-- **Netzwerkunterstützung:**  
-  Kommunikation zwischen Server und Client über TCP/IP-Sockets.
+- **Singleplayer-Modus:**  
+  - Spieler (X) vs. KI (O)
+  - Intuitive Eingabe: Der Benutzer gibt eine Zahl von 1 bis 9 ein, die intern auf die Felder 0–8 abgebildet wird.
+  - Replay-Funktion: Nach Spielende wird abgefragt, ob ein neues Spiel gestartet werden soll.
+  - Win-Animation: Bei einem Gewinn blinkt eine Animation, die den Sieger anzeigt.
+  - Möglichkeit, das Spiel jederzeit mit der Eingabe "quit" zu verlassen.
 
-- **Farbige Darstellung:**  
-  - **X:** Wird in Rot dargestellt  
-  - **O:** Wird in Blau dargestellt  
-  - **Spielfeldlinien:** Werden in Grün gezeichnet
-
-- **Replay-Funktion:**  
-  Nach Spielende wird abgefragt, ob ein weiteres Spiel gestartet werden soll (sowohl im Einzelspieler- als auch im Multiplayer-Modus).
+- **Netzwerkmodus:**  
+  - Server-Modus: Startet den Host, der den ersten Zug (als 'X' im Singleplayer-Schema) ausführt.
+  - Client-Modus: Verbindet sich mit dem Host, um gemeinsam zu spielen.
+  - Verwendung von TCP/IP-Sockets zur Übertragung der Spielzüge.
+  - Gleicher Spielablauf wie im Singleplayer-Modus, nur dass die Züge über das Netzwerk synchronisiert werden.
 
 - **Spielstatistiken:**  
-  Die Anzahl der Siege, Niederlagen und Unentschieden wird in `stats.txt` gespeichert und angezeigt.
+  - Wins, Losses und Draws werden in der Datei `stats.txt` gespeichert.
+  - Die Statistiken werden nach jedem Spiel aktualisiert und in der GUI angezeigt.
+
+- **ncurses-GUI:**  
+  - Konsolenbasierte, farbige Darstellung des Spielfelds.
+  - Kompakte Darstellung des Grids mit Trennlinien.
+  - Fehler- und Eingabeaufforderungen werden in der GUI angezeigt.
 
 ## Systemanforderungen
 
-- **Betriebssystem:** Linux/Unix (Terminalbasiert)
-- **Compiler:** GCC (C99 oder höher, getestet z.B. mit GCC 14)
-- **Bibliotheken:** ncurses, libtinfo
-- **Build-Tool:** make
+- **Betriebssystem:**  
+  - Linux, macOS oder Windows 10 (empfohlen über WSL oder mit einer entsprechenden ncurses-Alternative, z.B. PDCurses)
+- **Compiler:**  
+  - GCC (C99 oder höher)
+- **Bibliotheken:**  
+  - ncurses, libtinfo (oder PDCurses auf Windows, falls nicht über WSL)
+- **Build-Tool:**  
+  - Make (oder gcc direkt)
 
 ## Installation und Build
 
+### Unter Linux / macOS / WSL
+
 1. **Repository klonen oder Dateien herunterladen:**
 
-   ```sh
-   git clone https://github.com/robk42/tic-tac-toe-network.git
-   cd tic-tac-toe-network
+   ```bash
+   git clone https://github.com/DeinBenutzername/tic-tac-toe.git
+   cd tic-tac-toe
