@@ -5,7 +5,7 @@ Dieses Projekt implementiert das klassische Tic Tac Toe-Spiel in C. Es bietet so
 ## Features
 
 - **Singleplayer-Modus:**  
-  - Spieler (X) vs. KI (O)
+  - Spieler (X) vs. KI (O) (./tic_tac_toe -1)
   - Eingabe der Züge als Zahl von 1 bis 9 (intern wird 1 subtrahiert, sodass 1 Feld 0 entspricht).
   - Möglichkeit, das Spiel jederzeit mit `quit` zu beenden.
   - Replay-Funktion: Nach Spielende wird abgefragt, ob ein weiteres Spiel gestartet werden soll.
@@ -13,8 +13,8 @@ Dieses Projekt implementiert das klassische Tic Tac Toe-Spiel in C. Es bietet so
   - Speicherung der Spielstatistiken (Wins, Losses, Draws) in `stats.txt`.
 
 - **Netzwerkmodus:**  
-  - **Server-Modus:** Startet den Host, der den ersten Zug (als Spieler 'X') ausführt.
-  - **Client-Modus:** Verbindet sich mit dem Server, um gemeinsam zu spielen (als 'O').
+  - **Server-Modus:** Startet den Host, der den ersten Zug (als Spieler 'X') ausführt. (./tic_tac_toe -s 12345)
+  - **Client-Modus:** Verbindet sich mit dem Server, um gemeinsam zu spielen (als 'O'). (./tic_tac_toe -c [IP-Adress] 12345)
   - Kommunikation über TCP/IP-Sockets. (Achte bei Verbindungen über das Internet auf korrekte Netzwerkeinstellungen, z. B. Portweiterleitung und Firewallkonfiguration.)
   - Gleicher Spielablauf wie im Singleplayer-Modus, jedoch werden die Züge zwischen den Partnern synchronisiert.
 
@@ -62,3 +62,18 @@ Dieses Projekt implementiert das klassische Tic Tac Toe-Spiel in C. Es bietet so
    ```bash
    git clone https://github.com/YourUsername/tic-tac-toe.git
    cd tic-tac-toe
+
+
+2. Benötigte Pakete installieren (z. B. unter Ubuntu/WSL):
+   sudo apt update
+   sudo apt install build-essential libncurses5-dev libncursesw5-dev
+
+3. Projekt kompilieren:
+
+   Mit dem bereitgestellten Makefile:
+   make clean
+   make
+
+   
+
+
