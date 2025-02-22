@@ -28,11 +28,11 @@
 
 Installiere `build-essential`, `libncurses5-dev` und `libncursesw5-dev` (z. B. über:  ```bash  sudo apt update  sudo apt install build-essential libncurses5-dev libncursesw5-dev
 
--\ **macOS:** 
+\- **macOS:** 
 
 brew install ncurses 
 
--\ **Windows:** 
+\- **Windows:** 
 
 unter WSL Ubuntu befolge die obige Anleitung für Linux
 
