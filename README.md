@@ -25,8 +25,9 @@
 ## [Dependencies](#dependencies)
 
 \- **Linux:**    
-
-Installiere `build-essential`, `libncurses5-dev` und `libncursesw5-dev` (z. B. über:  ```bash  sudo apt update  sudo apt install build-essential libncurses5-dev libncursesw5-dev
+Installiere `build-essential`, `libncurses5-dev` und `libncursesw5-dev`
+- sudo apt update
+- sudo apt install build-essential libncurses5-dev libncursesw5-dev
 
 \- **macOS:** 
 
