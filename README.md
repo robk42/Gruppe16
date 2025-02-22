@@ -64,7 +64,7 @@ sudo apt install build-essential libncurses5-dev libncursesw5-dev
 macOS: Nutze Homebrew, falls erforderlich:
 brew install ncurses
 
-**Projekt kompilieren**
+**Projekt kompilieren:**
 make clean
 make
 
