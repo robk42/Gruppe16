@@ -3,11 +3,12 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>    // For close()
+#include <ncurses.h>
 #include "spiellogik.h"
 #include "netzwerk.h"  // Network functions (reconnect removed)
 #include "gui.h"
 #include "stats.h"
-#include <ncurses.h>
+
 
 #define PORT_DEFAULT 12345
 
