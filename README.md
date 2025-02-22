@@ -43,11 +43,7 @@ unter WSL Ubuntu befolge die obige Anleitung für Linux
 \### Linux / macOS / WSL 
 
 1. **Repository klonen:** git clone https://github.com/robk42/Gruppe16.git   
-2. **Change Direction zum Respository**: cd Gruppe16
-3. **Projekt kompilieren**: 
-   1. make clean
-   2. make
-
+2. **Projekt kompilieren**: make
 
 
 ## [Nutzung](#nutzung)
