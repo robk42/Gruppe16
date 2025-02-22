@@ -42,7 +42,7 @@ unter WSL Ubuntu befolge die obige Anleitung für Linux
 
 ## [Installation und Build](#installation-und-build)
 
-\### Linux / macOS / WSL 
+\ Linux / macOS / WSL 
 
 1. **Repository klonen:** git clone https://github.com/robk42/Gruppe16.git   
 2. **Projekt kompilieren**: make
