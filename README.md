@@ -30,8 +30,8 @@ Installiere `build-essential`, `libncurses5-dev` und `libncursesw5-dev` (z. B.
 
 \- **macOS:** 
 
-xcode-select --install
-brew install ncurses 
+- xcode-select --install
+- brew install ncurses 
 
 \- **Windows:** 
 
