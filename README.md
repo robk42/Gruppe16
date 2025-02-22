@@ -6,7 +6,6 @@
 - [Nutzung](#nutzung)
 - [Erklärung der Module](#erklärung-der-module)
 - [Erweiterungsmöglichkeiten](#erweiterungsmöglichkeiten)
-- [Fazit](#fazit)
 
 ## [Features](#features)
 
