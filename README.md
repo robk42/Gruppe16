@@ -36,7 +36,7 @@ Installiere `build-essential`, `libncurses5-dev` und `libncursesw5-dev`
 
 \- **Windows:** 
 
-unter WSL Ubuntu befolge die obige Anleitung für Linux
+- unter WSL Ubuntu befolge die obige Anleitung für Linux
 
 
 
