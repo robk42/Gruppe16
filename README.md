@@ -55,8 +55,8 @@ unter WSL Ubuntu befolge die obige Anleitung für Linux
   - **Singleplayer** : ./tic_tac_toe .1
   - **Netzwerkmodus - Server** : ./tic_tac_toe -s 12345
   - **Netzwerkmodus - Client** : ./tic_tac_toe -c <server_ip> [12345]
-    - Um deine Ip herauszufinden gebe in deinem Terminal **ifconfig** ein
-    - Oder gehe auf https://www.whatsmyip.org/
+    - Der Host kann seine Ip mittels **ifconfig** herausfinden und dir schicken! :)
+    - Oder mittels https://www.whatsmyip.org/
 
 
 
