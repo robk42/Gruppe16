@@ -1,84 +1,126 @@
 # Tic Tac Toe – Netzwerk- und ncurses-basiertes Mehrspielerspiel
 
-Dieses Projekt implementiert das klassische Tic Tac Toe-Spiel in C. Es bietet einen Singleplayer-Modus (Spieler vs. einfache KI) sowie einen Netzwerkmodus (Server/Client) und verwendet **ncurses** für eine ansprechende, terminalbasierte Benutzeroberfläche. Zusätzlich werden Spielstatistiken (Wins, Losses, Draws) in der Datei `stats.txt` gespeichert, es gibt eine Replay-Funktion, eine Win-Animation und die Möglichkeit, das Spiel jederzeit durch Eingabe von `quit` zu beenden.
+Dieses Projekt implementiert das klassische Tic Tac Toe-Spiel in C. Es bietet sowohl einen **Singleplayer-Modus** (Spieler vs. einfache KI) als auch einen **Netzwerkmodus** (Server/Client) und verwendet [ncurses](https://invisible-island.net/ncurses/) zur Erstellung einer terminalbasierten Benutzeroberfläche. Zusätzlich werden Spielstatistiken (Siege, Niederlagen, Unentschieden) in der Datei `stats.txt` gespeichert und zwischen den Spielrunden aktualisiert. Ein interaktives Hauptmenü erleichtert die Modusauswahl.
+
+---
+
+## Inhaltsverzeichnis
+
+- [Features](#features)
+- [Dependencies](#dependencies)
+- [Installation und Build](#installation-und-build)
+- [Nutzung](#nutzung)
+- [Erklärung der Module](#erklärung-der-module)
+- [Erweiterungsmöglichkeiten](#erweiterungsmöglichkeiten)
+- [Fazit](#fazit)
 
 ---
 
 ## Features
 
-- **Singleplayer-Modus**
-  - Spieler (X) vs. KI (O)
-  - Eingabe der Züge als Zahl von **1 bis 9** (intern wird 1 subtrahiert, sodass 1 dem Feldindex 0 entspricht)
-  - Möglichkeit, das Spiel jederzeit mit `quit` zu beenden
-  - Replay-Funktion: Nach Spielende wird abgefragt, ob ein weiteres Spiel gestartet werden soll
-  - Win-Animation: Bei einem Sieg blinkt ein Text, der den Gewinner anzeigt
-  - Speicherung der Spielstatistiken in `stats.txt`
+- **Grundfunktionen:**
+  - Anzeige eines 3x3-Spielfelds, wobei leere Zellen numerisch (1–9) beschriftet sind.
+  - Eingabe der Spielzüge über Zahlen (1–9) oder durch Eingabe von `quit` zum Beenden.
+  - Automatische Überprüfung der Gewinnbedingungen und Erkennung von Unentschieden.
 
-- **Netzwerkmodus**
-  - **Server-Modus:** Startet den Host (spielt als 'X') und wartet auf eine Verbindung
-  - **Client-Modus:** Verbindet sich mit dem Server (spielt als 'O')
-  - Kommunikation über TCP/IP-Sockets
-  - Bei Verbindungsverlust versucht der Client, sich innerhalb von 30 Sekunden (6 Versuche à 5 Sekunden) neu zu verbinden; scheitert dies, gewinnt der Host
+- **Netzwerkfunktionalität:**
+  - Realisierung eines Server-/Client-Modus über TCP/IP-Sockets.
+  - Echtzeit-Synchronisation der Spielzüge zwischen Host (Server) und Client.
+  - Bei Fehlern im Netzwerkmodus (beim Senden oder Empfangen) wird das Spiel beendet.
 
-- **ncurses-basierte GUI**
-  - Darstellung des Spielfelds mit klaren Trennlinien
-  - Leere Felder werden numerisch von 1 bis 9 angezeigt, besetzte Felder zeigen X oder O
-  - Anzeige von Eingabeaufforderungen, Replay-Abfragen und Win-Animationen in Farbe
-
-- **Statistik-Modul**
-  - Die aktuellen Spielstatistiken werden beim Programmstart aus `stats.txt` geladen und beim Beenden aktualisiert und gespeichert
+- **Zusatzfunktionen:**
+  - Singleplayer-Modus mit einer einfachen, zufälligen KI.
+  - Anzeige und Aktualisierung von Statistiken (Siege, Niederlagen, Unentschieden) – wobei Server und Client ihre Ergebnisse jeweils korrekt erhalten.
+  - Interaktives Hauptmenü zur Auswahl der Modi (Singleplayer, Multiplayer – Server, Multiplayer – Client und Quit).
+  - Der Eingabe-Prompt weist explizit darauf hin, dass nur leere Zellen auswählbar sind.
 
 ---
 
-## Systemanforderungen
+## Dependencies
 
-- **Betriebssystem:**  
-  Linux, macOS oder Windows 10  
-  - **Hinweis:** Unter Windows wird empfohlen, das Windows Subsystem for Linux (WSL) zu verwenden oder alternativ PDCurses einzusetzen (dies erfordert ggf. zusätzliche Anpassungen im Code)
-- **Compiler:**  
-  GCC (C99 oder höher)
-- **Benötigte Bibliotheken:**  
-  ncurses und libtinfo (auf Linux/macOS/WSL)
-- **Build-Tool:**  
-  Make (alternativ kann auch gcc direkt verwendet werden)
+- **Linux:**  
+  Installiere `build-essential`, `libncurses5-dev` und `libncursesw5-dev` (z. B. über `sudo apt install build-essential libncurses5-dev libncursesw5-dev`).
 
----
-
-## Projektstruktur
-
-- **main.c**  
-  Enthält den Einstiegspunkt, die Auswahl des Modus (Singleplayer/Netzwerk) sowie Replay-Logik und die Integration der Statistiken.
-- **spiellogik.h / spiellogik.c**  
-  Enthält die Spiellogik: Initialisierung, Gewinn-/Draw-Prüfung, Zugvalidierung, KI-Zug.
-- **netzwerk.h / netzwerk.c**  
-  Enthält die Netzwerkfunktionen für den Server- und Client-Modus (Socket-Erstellung, Senden/Empfangen von Zügen, Wiederverbindungsversuch).
-- **gui.h / gui.c**  
-  Enthält alle ncurses-bezogenen Funktionen: GUI-Initialisierung, Spielfeldanzeige, Benutzereingabe, Replay-Abfrage, Win-Animation, Anzeige von Nachrichten.
-- **stats.h / stats.c**  
-  Enthält Funktionen zum Laden, Aktualisieren und Speichern der Spielstatistiken.
-- **Makefile**  
-  Automatisiert den Build-Prozess und kompiliert alle Module zu einer ausführbaren Datei namens `tic_tac_toe`.
-
----
-
+- **macOS:**  
+  Die meisten ncurses-Komponenten sind vorinstalliert. Alternativ kannst Du [Homebrew](https://brew.sh/) nutzen:  
+  ```bash
+  brew install ncurses
+  **Windows (10/11):**  
+Empfohlen wird die Nutzung des Windows Subsystems for Linux (WSL).
 ## Installation und Build
 
-### Für Linux / macOS / WSL
+### Linux / macOS / WSL
 
-1. **Repository klonen oder herunterladen:**
+**Repository klonen:**
+```bash
+git clone https://github.com/robk42/Gruppe16.git
+cd to repository
+bhängigkeiten installieren:
 
-   ```bash
-   git clone https://github.com/YourUsername/tic-tac-toe.git
-   cd tic-tac-toe
+Linux/WSL (Ubuntu):
+sudo apt update
+sudo apt install build-essential libncurses5-dev libncursesw5-dev
 
-2: **Benötigte Pakete installieren (Beispiel für Ubuntu/WSL):**
-    sudo apt update
-    sudo apt install build-essential libncurses5-dev libncursesw5-dev
+macOS: Nutze Homebrew, falls erforderlich:
+brew install ncurses
 
-3: ** Projekt kompilieren: **
+**Projekt kompilieren**
+make clean
+make
 
-      make clean
-      make
+Nutzung
+Über das interaktive Hauptmenü
+Start:
+Führe das Programm ohne Kommandozeilenparameter aus:
 
-4: ** Spielmodianleitung **
-      ./tic_tac_toe --help
+./tic_tac_toe
+Hauptmenü:
+Das Menü zeigt ein Banner in Orange und folgende Optionen an:
+
+Singleplayer (Player vs. AI): Starte ein Spiel gegen die integrierte KI.
+Multiplayer – Server: Starte den Server, der auf eingehende Verbindungen wartet.
+Multiplayer – Client: Verbinde Dich als Client zu einem laufenden Server. (Falls keine IP übergeben wird, wirst Du zur Eingabe aufgefordert.)
+Quit: Beendet das Programm.
+Wähle eine Option durch Drücken der entsprechenden Zahl (1–4).
+
+Über Kommandozeilenargumente
+Singleplayer-Modus:
+./tic_tac_toe -1
+Netzwerkmodus – Server:
+./tic_tac_toe -s [port]
+(Ohne Port wird Standardport 12345 verwendet.)
+
+Netzwerkmodus – Client:
+./tic_tac_toe -c <server_ip> [port]
+Ersetze <server_ip> durch die IP-Adresse des Hosts. Wird kein Port angegeben, verwendet das Programm 12345.
+
+Erklärung der Module
+Spiellogik:
+Das Spielfeld wird als eindimensionales Array (board[9]) dargestellt. Funktionen wie initBoard(), checkWin(), checkDraw(), isValidMove(), makeMove() und getAIMove() steuern die Spiellogik und den KI-Zug.
+
+Statistiken:
+Die Spielstatistiken (Siege, Niederlagen, Unentschieden) werden in stats.txt gespeichert. Funktionen loadStats(), saveStats() und updateStats() sorgen für das Laden, Speichern und Aktualisieren der Statistiken.
+
+Netzwerk:
+Die Netzwerkmodule (startServer(), connectToServer(), sendMove(), receiveMove()) ermöglichen den Server-/Client-Modus über TCP/IP-Sockets.
+
+GUI:
+Die Benutzeroberfläche wird über ncurses realisiert. Funktionen wie initGUI(), printBoardNCurses(), getUserMoveNCurses(), askReplayNCurses(), winAnimation() und displayMessage() steuern die Anzeige des Spielfelds, Eingabeaufforderungen und Animationen. Das interaktive Hauptmenü wird in main.c genutzt.
+
+main:
+Die Hauptfunktion entscheidet über Kommandozeilenparameter oder das interaktive Menü, welchen Spielmodus der Benutzer startet, und koordiniert das Laden und Speichern der Statistiken.
+
+Erweiterungsmöglichkeiten
+KI-Verbesserungen:
+Eine weiterentwickelte KI, beispielsweise durch den Einsatz eines Minimax-Algorithmus, könnte integriert werden.
+
+Netzwerkfeatures:
+Funktionen wie ein integrierter Chat oder das Speichern von Spielständen können zukünftig ergänzt werden.
+
+UI-Optimierung:
+Das Hauptmenü und andere Teile der Benutzeroberfläche können weiter grafisch verfeinert werden.
+
+
+
+
+
