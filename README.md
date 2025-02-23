@@ -45,7 +45,7 @@ Installiere `build-essential`, `libncurses5-dev` und `libncursesw5-dev`
  Linux / macOS / WSL 
 
 1. **Repository klonen:** git clone https://github.com/robk42/Gruppe16.git   
-2. **Projekt kompilieren**: make
+2. **Projekt kompilieren**: make   (unter macOS -ltinfo aus der makefile löschen und kompilieren mit make)
 
 
 ## [Nutzung](#nutzung)
