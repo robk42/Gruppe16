@@ -80,7 +80,7 @@ Installiere `build-essential`, `libncurses5-dev` und `libncursesw5-dev`
 - **KI-Verbesserung** :
   - Eine weiterentwickelte KI, beispielsweise durch den Einsatz eines Minimax-Algorithmus, könnte integriert werden.
 - **Netzwerkfeatures** :
-  - Funktionen wie ein integrierter Chat oder das Speichern von Spielständen können zukünftig ergänzt werden.
+  - Funktionen wie ein integrierter Chat können zukünftig ergänzt werden.
 - **UI-Optimierung** :
   - Das Hauptmenü und andere Teile der Benutzeroberfläche können weiter grafisch verfeinert werden.
 
